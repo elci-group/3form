@@ -1,4 +1,4 @@
-# form3
+# 3form
 
 Dependency-free ANSI terminal styling, tables, and animation primitives for Rust.
 
