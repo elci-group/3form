@@ -359,7 +359,13 @@ impl Aura {
         Self::new((92, 48, 25), (196, 126, 90), (255, 230, 211))
     }
 
-    pub fn reveal(&self, text: &str, _progress: f32, _phase: f32, _support: ColorSupport) -> String {
+    pub fn reveal(
+        &self,
+        text: &str,
+        _progress: f32,
+        _phase: f32,
+        _support: ColorSupport,
+    ) -> String {
         text.to_string()
     }
 
@@ -463,7 +469,11 @@ impl IsopodCrawl {
             .round()
             .max(0.0)
             .min(self.width as f32) as usize;
-        format!("{}🐛{}", "·".repeat(pos), "·".repeat(self.width.saturating_sub(pos)))
+        format!(
+            "{}🐛{}",
+            "·".repeat(pos),
+            "·".repeat(self.width.saturating_sub(pos))
+        )
     }
 }
 

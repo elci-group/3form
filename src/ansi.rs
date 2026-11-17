@@ -131,6 +131,37 @@ pub fn show_cursor() -> &'static str {
     "\x1b[?25h"
 }
 
+/// Save the cursor position (DECSC). Prefer this over counting emitted
+/// lines and calling [`move_up`] to rewind a redraw: line counts only match
+/// terminal rows when nothing soft-wraps, and text wider than the terminal
+/// silently breaks that assumption. Saving/restoring the position leaves
+/// row math to the terminal itself, so it stays correct under wrapping.
+pub fn save_cursor() -> &'static str {
+    "\x1b7"
+}
+
+/// Restore the cursor to the position last saved with [`save_cursor`] (DECRC).
+pub fn restore_cursor() -> &'static str {
+    "\x1b8"
+}
+
+/// Clear from the cursor to the end of the screen.
+pub fn clear_to_end_of_screen() -> &'static str {
+    "\x1b[0J"
+}
+
+/// Begin a synchronized update (DEC private mode 2026). Supporting terminals
+/// hold output until [`end_synchronized_update`] and present the whole
+/// repaint at once, so fast animation doesn't flicker; others ignore it.
+pub fn begin_synchronized_update() -> &'static str {
+    "\x1b[?2026h"
+}
+
+/// End a synchronized update started with [`begin_synchronized_update`].
+pub fn end_synchronized_update() -> &'static str {
+    "\x1b[?2026l"
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

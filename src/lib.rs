@@ -6,7 +6,8 @@
 //! primitives. No third-party crates, no proc macros — just the SGR
 //! sequences ([`ansi`]), a chainable styling API compatible with the
 //! common `Colorize` vocabulary ([`compat`]), Unicode-aware table
-//! rendering ([`table`]), and frame-based animation ([`anim`]).
+//! rendering ([`table`]), frame-based animation ([`anim`]), and real-time
+//! cascading progress scan bars ([`scan`]).
 //!
 //! Color is opt-in per stream: [`term::TermInfo::detect`] reads the
 //! environment-wide `NO_COLOR`/`TERM=dumb` signals, and callers layer
@@ -19,14 +20,16 @@
 pub mod anim;
 pub mod ansi;
 pub mod compat;
+pub mod scan;
 pub mod table;
 pub mod term;
 
 #[cfg(feature = "agent")]
 pub mod agent;
 
-mod width;
+pub mod width;
 
 pub use anim::{Aura, GrowthTrack, IsopodCrawl, Mode};
 pub use compat::{Colorize, StyledText};
+pub use scan::Cascade;
 pub use term::{ColorSupport, TermInfo};

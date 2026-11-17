@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 [package]
 name = "form3"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 description = "Dependency-free ANSI terminal styling, tables, and animation primitives"
 license = "MIT"
